@@ -14,15 +14,15 @@ Incomplete support for Java and C#.
 
 ```haxe
 import haxe.io.Bytes;
-import hx.ws.Log;
-import hx.ws.WebSocket;
+import hx.socketing.Log;
+import hx.socketing.WebSocket;
 class Main {
     static function main() {
         Log.mask = Log.INFO | Log.DEBUG | Log.DATA;
         var ws = new WebSocket("ws://localhost:5000");
-        ws.onopen = function() {
-            ws.send("alice string");
-            ws.send(Bytes.ofString("alice bytes"));
+        socketing.onopen = function() {
+            socketing.send("alice string");
+            socketing.send(Bytes.ofString("alice bytes"));
         }
         #if sys
         Sys.getChar(true);
@@ -35,8 +35,8 @@ class Main {
 
 `Main.hx`
 ```haxe
-import hx.ws.Log;
-import hx.ws.WebSocketServer;
+import hx.socketing.Log;
+import hx.socketing.WebSocketServer;
 class Main {
     static function main() {
         Log.mask = Log.INFO | Log.DEBUG | Log.DATA;
@@ -48,9 +48,9 @@ class Main {
 
 `MyHandler.hx`
 ```haxe
-import hx.ws.SocketImpl;
-import hx.ws.WebSocketHandler;
-import hx.ws.Types;
+import hx.socketing.SocketImpl;
+import hx.socketing.WebSocketHandler;
+import hx.socketing.Types;
 class MyHandler extends WebSocketHandler {
     public function new(s: SocketImpl) {
         super(s);
@@ -83,7 +83,7 @@ class MyHandler extends WebSocketHandler {
 ```haxe
 package;
 
-import hx.ws.WebSocketSecureServer;
+import hx.socketing.WebSocketSecureServer;
 
 import sys.ssl.Key;
 import sys.ssl.Certificate;
@@ -116,11 +116,11 @@ Initialize client with `wss` protocol, e.g. `new WebSocket("wss://localhost:5000
 Only on sys platforms, since they expose SslSocket. If you need to test JS with selfsigned certs, you need to import certificate into your browser trusted collection.
 
 ```haxe
-import hx.ws.Log;
-import hx.ws.WebSocket;
+import hx.socketing.Log;
+import hx.socketing.WebSocket;
 
-import hx.ws.SocketImpl;
-import hx.ws.SecureSocketImpl;
+import hx.socketing.SocketImpl;
+import hx.socketing.SecureSocketImpl;
 
 class WebSocketNoVerify extends WebSocket {
     override private function createSocket():SocketImpl
@@ -138,8 +138,8 @@ class Main {
     static function main() {
         Log.mask = Log.INFO | Log.DEBUG | Log.DATA;
         var ws = new WebSocketNoVerify("wss://localhost:5000");
-        ws.onopen = function() {
-            ws.send("alice string");
+        socketing.onopen = function() {
+            socketing.send("alice string");
         }
         Sys.getChar(true);
     }

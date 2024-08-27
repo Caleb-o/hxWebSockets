@@ -1,5 +1,0 @@
--cp src
---main Main
--lib hxjava
--lib hxWebSockets
--java bin/java

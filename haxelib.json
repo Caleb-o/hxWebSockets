@@ -1,6 +1,7 @@
 {
+    "name": "hxWebSockets",
     "contributors": [
-        "ianharrigan"
+        "caleb-o"
     ],
     "version": "1.4.0",
     "license": "MIT",
@@ -9,7 +10,6 @@
     ],
     "releasenote": "Fixes and enhancements",
     "dependencies": {},
-    "name": "hxWebSockets",
     "description": "websockets for all haxe platforms",
-    "url": "https://github.com/ianharrigan/hxWebSockets"
+    "url": "https://github.com/Caleb-o/hxWebSockets"
 }
